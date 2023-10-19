@@ -111,7 +111,7 @@ class CocktailPageWithInfo extends StatelessWidget {
               child: Image.network(data.strDrinkThumb),
             ),
             Container(
-              margin: EdgeInsets.all(10.0), // Adjust the margin as needed
+              margin: const EdgeInsets.only(left: 30.0, right: 30.0, bottom: 20.0, top: 5.0,), // Adjust the margin as needed
               child: Text(
                 data.strInstructions,
                 style: const TextStyle(color: Colors.white, fontSize: 14, fontStyle: FontStyle.italic),
@@ -123,6 +123,10 @@ class CocktailPageWithInfo extends StatelessWidget {
               Text(
                 '${data.ingredients[i]}: ${data.measures[i]}',
                 style: const TextStyle(color: Colors.white, fontSize: 18),),
+            Container(
+              margin: EdgeInsets.all(10.0),
+              child: GenerateCocktailButton(),
+            )
           ],
         ),
       ),
