@@ -46,4 +46,11 @@ Pseudo
 		if Stringredient[i] != null then display ingreidnt and corrisponding mesuremnt (if there is one) 
 		when an ingerdeint does equal null stop
 		 
-		
+
+Conclusions:
+
+Overal I'm happy with the application, didnt have time to refactor code or style buttons (let alone testing or much animation) but given time restraints im happy to ave hit the key objectives.
+Passing data between pages was the thing i struggled most with and thinking there may have been a better way to do this.
+
+Thank you for looking 
+Jack		
