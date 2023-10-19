@@ -46,9 +46,13 @@ class CocktailPage extends StatelessWidget {
           children: [
             Text(data.strDrink),
             Text(data.strGlass),
-            Image.network(data.strDrinkThumb),
+            Container(
+              width: 300,
+              height: 300,
+              margin: const EdgeInsets.only(top: 20.0, bottom: 20.0),
+              child: Image.network(data.strDrinkThumb),
+            ),
             Text(data.strInstructions),
-            // Display ingredients and measures
             for (int i = 0; i < data.ingredients.length; i++)
               Text('${data.ingredients[i]}: ${data.measures[i]}'),
           ],
