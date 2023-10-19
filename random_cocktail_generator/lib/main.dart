@@ -5,17 +5,23 @@ void main() {
   runApp(MyApp());
 }
 
-
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Animated Text Switcher'),
+          title: const Text('Main Page'),
         ),
-        body: Center(
-          child: AnimatedTextSwitcher(),
+        body: const Column(
+          children: <Widget>[
+            Center(
+              child: AnimatedTextSwitcher(),
+            ),
+            Center(
+              child: GenerateCocktailButton(),
+            ),
+          ],
         ),
       ),
     );
@@ -23,7 +29,10 @@ class MyApp extends StatelessWidget {
 }
 
 
+
 class AnimatedTextSwitcher extends StatefulWidget {
+  const AnimatedTextSwitcher({super.key});
+
   @override
   _AnimatedTextSwitcherState createState() => _AnimatedTextSwitcherState();
 }
@@ -71,5 +80,22 @@ class _AnimatedTextSwitcherState extends State<AnimatedTextSwitcher> {
     );
   }
 }
+
+class GenerateCocktailButton extends StatelessWidget {
+  const GenerateCocktailButton({super.key});
+
+ @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: ElevatedButton(
+        onPressed: () {
+          // Add your button press logic here
+        },
+        child: Text('Show me a Cocktail'),
+      ),
+    );
+  }
+}
+
 
 
