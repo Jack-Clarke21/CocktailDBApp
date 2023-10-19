@@ -8,7 +8,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,20 +18,25 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Main Page'),
         ),
-        body: const Column(
-          children: <Widget>[
-            Center(
-              child: AnimatedTextSwitcher(),
-            ),
-            Center(
-              child: GenerateCocktailButton(),
-            ),
-          ],
+        body: const Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Center(
+                child: AnimatedTextSwitcher(),
+              ),
+              Center(
+                child: GenerateCocktailButton(),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 }
+
 
 class CocktailPage extends StatelessWidget {
   final CocktailData data;
@@ -82,7 +87,7 @@ class CocktailPage extends StatelessWidget {
 }
 
 class CocktailPageWithInfo extends StatelessWidget {
-   final CocktailData data;
+  final CocktailData data;
 
   CocktailPageWithInfo({required this.data});
 
@@ -99,32 +104,49 @@ class CocktailPageWithInfo extends StatelessWidget {
             Text(
               data.strDrink,
               style: const TextStyle(color: Colors.white, fontSize: 50),
-              ),
+            ),
             Text(
               'Made in a ${data.strGlass}',
               style: const TextStyle(color: Colors.white, fontSize: 20),
-              ), 
-            Container(
-              width: 150,
-              height: 150,
-              margin: const EdgeInsets.only(top: 5.0, bottom: 10.0),
-              child: Image.network(data.strDrinkThumb),
             ),
-            Container(
-              margin: const EdgeInsets.only(left: 30.0, right: 30.0, bottom: 20.0, top: 5.0,), // Adjust the margin as needed
-              child: Text(
-                data.strInstructions,
-                style: const TextStyle(color: Colors.white, fontSize: 14, fontStyle: FontStyle.italic),
-              ),
+            SizedBox(height: 20), // Add some spacing between the previous text and the image
+
+            // Create a Row for the image and the instructions
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: 250,
+                  height: 250,
+                  margin: const EdgeInsets.only(right: 10.0),
+                  child: Image.network(data.strDrinkThumb),
+                ),
+                Container(
+                  width: 200,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(bottom: 20.0),
+                        child: Text(
+                          data.strInstructions,
+                          style: const TextStyle(color: Colors.white, fontSize: 14, fontStyle: FontStyle.italic),
+                        ),
+                      ),
+                      // Display ingredients and measures
+                      for (int i = 0; i < data.ingredients.length; i++)
+                        Text(
+                          '${data.ingredients[i]}: ${data.measures[i]}',
+                          style: const TextStyle(color: Colors.white, fontSize: 18),
+                        ),
+                    ],
+                  ),
+                ),
+              ],
             ),
 
-            // Display ingredients and measures
-            for (int i = 0; i < data.ingredients.length; i++)
-              Text(
-                '${data.ingredients[i]}: ${data.measures[i]}',
-                style: const TextStyle(color: Colors.white, fontSize: 18),),
             Container(
-              margin: EdgeInsets.all(10.0),
+              margin: EdgeInsets.all(20.0),
               child: GenerateCocktailButton(),
             )
           ],
@@ -133,6 +155,7 @@ class CocktailPageWithInfo extends StatelessWidget {
     );
   }
 }
+
 
 
 
