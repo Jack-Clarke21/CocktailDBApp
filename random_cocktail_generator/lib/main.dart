@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        backgroundColor: Colors.black,
         appBar: AppBar(
           title: const Text('Main Page'),
         ),
@@ -35,26 +36,42 @@ class CocktailPage extends StatelessWidget {
 
   CocktailPage({required this.data});
 
+  final TextStyle whiteTextStyle = const TextStyle(
+    color: Colors.white,
+    fontSize: 50, );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
         title: Text('Cocktail Details'),
       ),
       body: Center(
         child: Column(
           children: [
-            Text(data.strDrink),
-            Text(data.strGlass),
+            Text(
+              data.strDrink,
+              style: const TextStyle(color: Colors.white, fontSize: 50),
+              ),
+            Text(
+              'Made in a ${data.strGlass}',
+              style: const TextStyle(color: Colors.white, fontSize: 20),
+              ),
             Container(
               width: 300,
               height: 300,
-              margin: const EdgeInsets.only(top: 20.0, bottom: 20.0),
+              margin: const EdgeInsets.only(top: 5.0, bottom: 20.0),
               child: Image.network(data.strDrinkThumb),
             ),
-            Text(data.strInstructions),
-            for (int i = 0; i < data.ingredients.length; i++)
-              Text('${data.ingredients[i]}: ${data.measures[i]}'),
+            const Center(
+              child: Column(
+                children: [
+                  ShowCocktailInformation(),
+                  GenerateCocktailButton(),
+                ]
+              )
+            )
           ],
         ),
       ),
@@ -181,7 +198,7 @@ class CocktailData {
     );
   }
 }
-  
+  //function for getting and CocktailDB JSON information  
   Future<CocktailData> fetchCocktailData() async {
   final response = await http.get(Uri.parse('https://www.thecocktaildb.com/api/json/v1/1/random.php'));
   if (response.statusCode == 200) {
@@ -192,5 +209,21 @@ class CocktailData {
   }
 }
 
+class ShowCocktailInformation extends StatelessWidget {
+  const ShowCocktailInformation({super.key});
 
-
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        margin: EdgeInsets.all(16.0), // Add margin here
+        child: ElevatedButton(
+          onPressed: () {
+            // Display the rest of the information
+          },
+          child: Text('Show me how to make'),
+        ),
+      ),
+    );
+  }
+}
