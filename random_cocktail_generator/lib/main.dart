@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 void main() {
   runApp(MyApp());
@@ -27,6 +29,35 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+class CocktailPage extends StatelessWidget {
+  final CocktailData data;
+
+  CocktailPage({required this.data});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Cocktail Details'),
+      ),
+      body: Center(
+        child: Column(
+          children: [
+            Text(data.strDrink),
+            Text(data.strGlass),
+            Image.network(data.strDrinkThumb),
+            Text(data.strInstructions),
+            // Display ingredients and measures
+            for (int i = 0; i < data.ingredients.length; i++)
+              Text('${data.ingredients[i]}: ${data.measures[i]}'),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 
 
 
@@ -88,12 +119,72 @@ class GenerateCocktailButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: ElevatedButton(
-        onPressed: () {
-          // Add your button press logic here
+        onPressed: () async {
+          CocktailData data = await fetchCocktailData();
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => CocktailPage(data: data),
+            ),
+          );
         },
         child: Text('Show me a Cocktail'),
       ),
     );
+  }
+}
+
+//Class for storing API request from cocktailDB
+class CocktailData {
+  final String strDrink;
+  final String strGlass;
+  final String strDrinkThumb;
+  final String strInstructions;
+  final List<String> ingredients;
+  final List<String> measures;
+
+  CocktailData({
+    required this.strDrink,
+    required this.strGlass,
+    required this.strDrinkThumb,
+    required this.strInstructions,
+    required this.ingredients,
+    required this.measures,
+  });
+
+  factory CocktailData.fromJson(Map<String, dynamic> json) {
+    List<String> ingredients = [];
+    List<String> measures = [];
+
+    // Extract the ingredients and measures from JSON that aren't null
+    for (int i = 1; i <= 15; i++) {
+      final ingredient = json['strIngredient$i'];
+      final measure = json['strMeasure$i'];
+
+      if (ingredient != null && ingredient.isNotEmpty) {
+        ingredients.add(ingredient);
+        measures.add(measure ?? ''); // Use an empty string if measure is null
+      }
+    }
+
+    return CocktailData(
+      strDrink: json['strDrink'],
+      strGlass: json['strGlass'],
+      strDrinkThumb: json['strDrinkThumb'],
+      strInstructions: json['strInstructions'],
+      ingredients: ingredients,
+      measures: measures,
+    );
+  }
+}
+  
+  Future<CocktailData> fetchCocktailData() async {
+  final response = await http.get(Uri.parse('https://www.thecocktaildb.com/api/json/v1/1/random.php'));
+  if (response.statusCode == 200) {
+    final data = json.decode(response.body)['drinks'][0];
+    return CocktailData.fromJson(data);
+  } else {
+    throw Exception('Failed to load cocktail data');
   }
 }
 
