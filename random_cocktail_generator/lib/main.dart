@@ -8,6 +8,8 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -36,9 +38,9 @@ class CocktailPage extends StatelessWidget {
 
   CocktailPage({required this.data});
 
-  final TextStyle whiteTextStyle = const TextStyle(
-    color: Colors.white,
-    fontSize: 50, );
+//  final TextStyle whiteTextStyle = const TextStyle(
+//    color: Colors.white,
+//    fontSize: 50, );
 
   @override
   Widget build(BuildContext context) {
@@ -61,13 +63,13 @@ class CocktailPage extends StatelessWidget {
             Container(
               width: 300,
               height: 300,
-              margin: const EdgeInsets.only(top: 5.0, bottom: 20.0),
+              margin: const EdgeInsets.only(top: 5.0),
               child: Image.network(data.strDrinkThumb),
             ),
-            const Center(
+            Center(
               child: Column(
                 children: [
-                  ShowCocktailInformation(),
+                  ShowCocktailInformation(data: data),
                   GenerateCocktailButton(),
                 ]
               )
@@ -79,6 +81,54 @@ class CocktailPage extends StatelessWidget {
   }
 }
 
+class CocktailPageWithInfo extends StatelessWidget {
+   final CocktailData data;
+
+  CocktailPageWithInfo({required this.data});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        title: Text('Cocktail Details'),
+      ),
+      body: Center(
+        child: Column(
+          children: [
+            Text(
+              data.strDrink,
+              style: const TextStyle(color: Colors.white, fontSize: 50),
+              ),
+            Text(
+              'Made in a ${data.strGlass}',
+              style: const TextStyle(color: Colors.white, fontSize: 20),
+              ), 
+            Container(
+              width: 150,
+              height: 150,
+              margin: const EdgeInsets.only(top: 5.0, bottom: 10.0),
+              child: Image.network(data.strDrinkThumb),
+            ),
+            Container(
+              margin: EdgeInsets.all(10.0), // Adjust the margin as needed
+              child: Text(
+                data.strInstructions,
+                style: const TextStyle(color: Colors.white, fontSize: 14, fontStyle: FontStyle.italic),
+              ),
+            ),
+
+            // Display ingredients and measures
+            for (int i = 0; i < data.ingredients.length; i++)
+              Text(
+                '${data.ingredients[i]}: ${data.measures[i]}',
+                style: const TextStyle(color: Colors.white, fontSize: 18),),
+          ],
+        ),
+      ),
+    );
+  }
+}
 
 
 
@@ -210,16 +260,23 @@ class CocktailData {
 }
 
 class ShowCocktailInformation extends StatelessWidget {
-  const ShowCocktailInformation({super.key});
+  final CocktailData data; 
+
+  const ShowCocktailInformation({required this.data});
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        margin: EdgeInsets.all(16.0), // Add margin here
+        margin: EdgeInsets.all(16.0),
         child: ElevatedButton(
           onPressed: () {
-            // Display the rest of the information
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => CocktailPageWithInfo(data: data),
+              ),
+            );
           },
           child: Text('Show me how to make'),
         ),
@@ -227,3 +284,4 @@ class ShowCocktailInformation extends StatelessWidget {
     );
   }
 }
+
