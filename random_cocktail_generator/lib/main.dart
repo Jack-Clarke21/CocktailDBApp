@@ -43,9 +43,6 @@ class CocktailPage extends StatelessWidget {
 
   CocktailPage({required this.data});
 
-//  final TextStyle whiteTextStyle = const TextStyle(
-//    color: Colors.white,
-//    fontSize: 50, );
 
   @override
   Widget build(BuildContext context) {
@@ -65,11 +62,14 @@ class CocktailPage extends StatelessWidget {
               'Made in a ${data.strGlass}',
               style: const TextStyle(color: Colors.white, fontSize: 20),
               ),
-            Container(
-              width: 300,
-              height: 300,
-              margin: const EdgeInsets.only(top: 5.0),
-              child: Image.network(data.strDrinkThumb),
+            Hero(
+              tag: 'cocktailImage_${data.strDrink}',
+              child: Container(
+                width: 340,
+                height: 340,
+                margin: const EdgeInsets.only(top: 5.0),
+                child: Image.network(data.strDrinkThumb),
+              ),
             ),
             Center(
               child: Column(
@@ -115,11 +115,14 @@ class CocktailPageWithInfo extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  width: 250,
-                  height: 250,
-                  margin: const EdgeInsets.only(right: 10.0),
-                  child: Image.network(data.strDrinkThumb),
+                Hero(
+                  tag: 'cocktailImage_${data.strDrink}',
+                  child: Container(
+                    width: 220,
+                    height: 220,
+                    margin: const EdgeInsets.only(right: 10.0),
+                    child: Image.network(data.strDrinkThumb),
+                  ),
                 ),
                 Container(
                   width: 200,
