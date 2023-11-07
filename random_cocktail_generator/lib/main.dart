@@ -9,6 +9,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
+  
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,10 @@ class MyApp extends StatelessWidget {
                 child: AnimatedTextSwitcher(),
               ),
               Center(
-                child: GenerateCocktailButton(),
+                child: Hero(
+                  tag:'GenerateCocktailButton',
+                  child: GenerateCocktailButton()
+                  ),
               ),
             ],
           ),
@@ -62,7 +66,6 @@ class CocktailPage extends StatelessWidget {
               'Made in a ${data.strGlass}',
               style: const TextStyle(color: Colors.white, fontSize: 20,),
             ),
-            // Slide in from the left
             SlideTransition(
               position: Tween<Offset>(
                 begin: Offset(-2.0, 0.0), // Slide from the left
@@ -85,7 +88,10 @@ class CocktailPage extends StatelessWidget {
               child: Column(
                 children: [
                   ShowCocktailInformation(data: data),
-                  GenerateCocktailButton(),
+                  Hero(
+                    tag:"GenerateCocktailButton", 
+                    child: GenerateCocktailButton()
+                    ),
                 ],
               ),
             )
@@ -111,17 +117,21 @@ class CocktailPageWithInfo extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
+            // Fade in Text
             Text(
               data.strDrink,
               style: const TextStyle(color: Colors.white, fontSize: 50),
+              textAlign: TextAlign.center,
             ),
+
+            // Fade in Text
             Text(
               'Made in a ${data.strGlass}',
               style: const TextStyle(color: Colors.white, fontSize: 20),
             ),
-            SizedBox(height: 20), // Add some spacing between the previous text and the image
 
-            // Create a Row for the image and the instructions
+            SizedBox(height: 20),
+
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -134,25 +144,36 @@ class CocktailPageWithInfo extends StatelessWidget {
                     child: Image.network(data.strDrinkThumb),
                   ),
                 ),
-                Container(
-                  width: 200,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(bottom: 20.0),
-                        child: Text(
-                          data.strInstructions,
-                          style: const TextStyle(color: Colors.white, fontSize: 14, fontStyle: FontStyle.italic),
+
+                // Slide in Container
+                SlideTransition(
+                  position: Tween<Offset>(
+                    begin: Offset(1.0, 0.0),
+                    end: Offset.zero,
+                  ).animate(CurvedAnimation(
+                    curve: Curves.easeInOut,
+                    parent: ModalRoute.of(context)!.animation!,
+                  )),
+                  child: Container(
+                    width: 200,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(bottom: 20.0),
+                          child: Text(
+                            data.strInstructions,
+                            style: const TextStyle(color: Colors.white, fontSize: 14, fontStyle: FontStyle.italic),
+                          ),
                         ),
-                      ),
-                      // Display ingredients and measures
-                      for (int i = 0; i < data.ingredients.length; i++)
-                        Text(
-                          '${data.ingredients[i]}: ${data.measures[i]}',
-                          style: const TextStyle(color: Colors.white, fontSize: 18),
-                        ),
-                    ],
+                        // Display ingredients and measures
+                        for (int i = 0; i < data.ingredients.length; i++)
+                          Text(
+                            '${data.ingredients[i]}: ${data.measures[i]}',
+                            style: const TextStyle(color: Colors.white, fontSize: 18),
+                          ),
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -160,8 +181,11 @@ class CocktailPageWithInfo extends StatelessWidget {
 
             Container(
               margin: EdgeInsets.all(20.0),
-              child: GenerateCocktailButton(),
-            )
+              child: const Hero(
+                tag: 'GenerateCocktailButton',
+                child: GenerateCocktailButton()
+                ),
+            ),
           ],
         ),
       ),
@@ -246,13 +270,14 @@ Widget build(BuildContext context) {
     await Navigator.push(
       context,
       PageRouteBuilder(
-        transitionDuration: Duration(milliseconds: 800), 
+        transitionDuration: Duration(milliseconds: 900), 
         pageBuilder: (context, animation, secondaryAnimation) {
-          const begin = Offset(3.0, 0.0);
+          const begin = Offset(3.0, 0.05);
           const end = Offset.zero;
           var fastEaseInToSlowEaseOutCurve = Curves.fastEaseInToSlowEaseOut; // You can adjust the curve
 
-          var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: fastEaseInToSlowEaseOutCurve));
+          var tween = Tween(begin: begin, end: end)
+            .chain(CurveTween(curve: fastEaseInToSlowEaseOutCurve));
 
           return SlideTransition(
             position: animation.drive(tween),
@@ -333,14 +358,14 @@ class ShowCocktailInformation extends StatelessWidget {
             Navigator.push(
               context,
               PageRouteBuilder(
-              transitionDuration: const Duration(milliseconds: 600),
+              transitionDuration: const Duration(milliseconds: 900),
               pageBuilder: (context, animation, secondaryAnimation) {
-                const begin = Offset(1.0, 0.0);
+                const begin = Offset(0.0, 0.0);
                 const end = Offset.zero;
-                var curve = Curves.fastEaseInToSlowEaseOut; 
+                var fastEaseInToSlowEaseOutCurve = Curves.fastEaseInToSlowEaseOut; 
 
                 var tween = Tween(begin: begin, end: end)
-                    .chain(CurveTween(curve: curve));
+                    .chain(CurveTween(curve: fastEaseInToSlowEaseOutCurve));
 
                 return SlideTransition(
                   position: animation.drive(tween),
