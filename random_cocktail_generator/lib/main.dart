@@ -43,7 +43,6 @@ class CocktailPage extends StatelessWidget {
 
   CocktailPage({required this.data});
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,18 +56,28 @@ class CocktailPage extends StatelessWidget {
             Text(
               data.strDrink,
               style: const TextStyle(color: Colors.white, fontSize: 50),
-              ),
+            ),
             Text(
               'Made in a ${data.strGlass}',
-              style: const TextStyle(color: Colors.white, fontSize: 20),
-              ),
-            Hero(
-              tag: 'cocktailImage_${data.strDrink}',
-              child: Container(
-                width: 340,
-                height: 340,
-                margin: const EdgeInsets.only(top: 5.0),
-                child: Image.network(data.strDrinkThumb),
+              style: const TextStyle(color: Colors.white, fontSize: 20,),
+            ),
+            // Slide in from the left
+            SlideTransition(
+              position: Tween<Offset>(
+                begin: Offset(-2.0, 0.0), // Slide from the left
+                end: Offset.zero,
+              ).animate(CurvedAnimation(
+                curve: Curves.easeOut,
+                parent: ModalRoute.of(context)!.animation!,
+              )),
+              child: Hero(
+                tag: 'cocktailImage_${data.strDrink}',
+                child: Container(
+                  width: 340,
+                  height: 340,
+                  margin: const EdgeInsets.only(top: 5.0),
+                  child: Image.network(data.strDrinkThumb),
+                ),
               ),
             ),
             Center(
@@ -76,8 +85,8 @@ class CocktailPage extends StatelessWidget {
                 children: [
                   ShowCocktailInformation(data: data),
                   GenerateCocktailButton(),
-                ]
-              )
+                ],
+              ),
             )
           ],
         ),
@@ -216,20 +225,39 @@ class _AnimatedTextSwitcherState extends State<AnimatedTextSwitcher> {
 class GenerateCocktailButton extends StatelessWidget {
   const GenerateCocktailButton({super.key});
 
- @override
-  Widget build(BuildContext context) {
-    return Center(
+@override
+Widget build(BuildContext context) {
+  return Center(
+    child: Container(
+      margin: EdgeInsets.all(16.0),
       child: ElevatedButton(
         onPressed: () async {
           CocktailData data = await fetchCocktailData();
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => CocktailPage(data: data),
-            ),
-          );
+          await navigateToCocktailPage(context, data);
         },
         child: Text('Show me a Cocktail'),
+      ),
+    ),
+  );
+}
+
+  Future<void> navigateToCocktailPage(BuildContext context, CocktailData data) async {
+    await Navigator.push(
+      context,
+      PageRouteBuilder(
+        transitionDuration: Duration(milliseconds: 800), 
+        pageBuilder: (context, animation, secondaryAnimation) {
+          const begin = Offset(3.0, 0.0);
+          const end = Offset.zero;
+          var fastEaseInToSlowEaseOutCurve = Curves.fastEaseInToSlowEaseOut; // You can adjust the curve
+
+          var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: fastEaseInToSlowEaseOutCurve));
+
+          return SlideTransition(
+            position: animation.drive(tween),
+            child: CocktailPage(data: data),
+          );
+        },
       ),
     );
   }
@@ -303,9 +331,22 @@ class ShowCocktailInformation extends StatelessWidget {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(
-                builder: (context) => CocktailPageWithInfo(data: data),
-              ),
+              PageRouteBuilder(
+              transitionDuration: const Duration(milliseconds: 600),
+              pageBuilder: (context, animation, secondaryAnimation) {
+                const begin = Offset(1.0, 0.0);
+                const end = Offset.zero;
+                var curve = Curves.fastEaseInToSlowEaseOut; 
+
+                var tween = Tween(begin: begin, end: end)
+                    .chain(CurveTween(curve: curve));
+
+                return SlideTransition(
+                  position: animation.drive(tween),
+                  child: CocktailPageWithInfo(data: data),
+                );
+              },
+              )
             );
           },
           child: Text('Show me how to make'),
