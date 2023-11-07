@@ -56,6 +56,7 @@ class CocktailPage extends StatelessWidget {
             Text(
               data.strDrink,
               style: const TextStyle(color: Colors.white, fontSize: 50),
+              textAlign: TextAlign.center,
             ),
             Text(
               'Made in a ${data.strGlass}',
