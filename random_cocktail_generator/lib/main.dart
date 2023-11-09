@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -45,14 +45,14 @@ class MyApp extends StatelessWidget {
 class CocktailPage extends StatelessWidget {
   final CocktailData data;
 
-  CocktailPage({required this.data});
+  const CocktailPage({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        title: Text('Cocktail Details'),
+        title: const Text('Cocktail Details'),
       ),
       body: Center(
         child: Column(
@@ -68,7 +68,7 @@ class CocktailPage extends StatelessWidget {
             ),
             SlideTransition(
               position: Tween<Offset>(
-                begin: Offset(-2.0, 0.0), // Slide from the left
+                begin: const Offset(-3.0, 0.0), // Slide from the left
                 end: Offset.zero,
               ).animate(CurvedAnimation(
                 curve: Curves.easeOut,
@@ -88,10 +88,19 @@ class CocktailPage extends StatelessWidget {
               child: Column(
                 children: [
                   ShowCocktailInformation(data: data),
-                  Hero(
-                    tag:"GenerateCocktailButton", 
-                    child: GenerateCocktailButton()
-                    ),
+                  SlideTransition(
+                    position: Tween<Offset>(
+                      begin: const Offset(-0.8, 0), // Slide from the left
+                      end: Offset.zero,
+                    ).animate(CurvedAnimation(
+                      curve: Curves.easeOut,
+                      parent: ModalRoute.of(context)!.animation!,
+                    )),
+                    child: const Hero(
+                      tag:"GenerateCocktailButton", 
+                      child: GenerateCocktailButton()
+                      ),
+                  ),
                 ],
               ),
             )
@@ -105,14 +114,14 @@ class CocktailPage extends StatelessWidget {
 class CocktailPageWithInfo extends StatelessWidget {
   final CocktailData data;
 
-  CocktailPageWithInfo({required this.data});
+  const CocktailPageWithInfo({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        title: Text('Cocktail Details'),
+        title: const Text('Cocktail Details'),
       ),
       body: Center(
         child: Column(
@@ -130,7 +139,7 @@ class CocktailPageWithInfo extends StatelessWidget {
               style: const TextStyle(color: Colors.white, fontSize: 20),
             ),
 
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -148,19 +157,19 @@ class CocktailPageWithInfo extends StatelessWidget {
                 // Slide in Container
                 SlideTransition(
                   position: Tween<Offset>(
-                    begin: Offset(1.0, 0.0),
+                    begin: const Offset(1.0, 0.0),
                     end: Offset.zero,
                   ).animate(CurvedAnimation(
                     curve: Curves.easeInOut,
                     parent: ModalRoute.of(context)!.animation!,
                   )),
-                  child: Container(
+                  child: SizedBox(
                     width: 200,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          margin: EdgeInsets.only(bottom: 20.0),
+                          margin: const EdgeInsets.only(bottom: 20.0),
                           child: Text(
                             data.strInstructions,
                             style: const TextStyle(color: Colors.white, fontSize: 14, fontStyle: FontStyle.italic),
@@ -180,7 +189,7 @@ class CocktailPageWithInfo extends StatelessWidget {
             ),
 
             Container(
-              margin: EdgeInsets.all(20.0),
+              margin: const EdgeInsets.all(20.0),
               child: const Hero(
                 tag: 'GenerateCocktailButton',
                 child: GenerateCocktailButton()
@@ -200,7 +209,7 @@ class AnimatedTextSwitcher extends StatefulWidget {
   const AnimatedTextSwitcher({super.key});
 
   @override
-  _AnimatedTextSwitcherState createState() => _AnimatedTextSwitcherState();
+  State<AnimatedTextSwitcher> createState() => _AnimatedTextSwitcherState();
 }
 
 class _AnimatedTextSwitcherState extends State<AnimatedTextSwitcher> {
@@ -217,7 +226,7 @@ class _AnimatedTextSwitcherState extends State<AnimatedTextSwitcher> {
   void initState() {
     super.initState();
     // timer swaps words every Second
-    Timer.periodic(Duration(seconds: 1), (timer) {
+    Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
         _currentIndex = (_currentIndex + 1) % words.length;
       });
@@ -232,7 +241,7 @@ class _AnimatedTextSwitcherState extends State<AnimatedTextSwitcher> {
       height: 200, 
       child: Center(
         child: AnimatedSwitcher(
-          duration: Duration(seconds: 0),
+          duration: const Duration(seconds: 0),
           child: FittedBox(
             fit: BoxFit.contain,
           child: Text(
@@ -254,23 +263,25 @@ class GenerateCocktailButton extends StatelessWidget {
 Widget build(BuildContext context) {
   return Center(
     child: Container(
-      margin: EdgeInsets.all(16.0),
+      margin: const EdgeInsets.all(16.0),
       child: ElevatedButton(
         onPressed: () async {
           CocktailData data = await fetchCocktailData();
           await navigateToCocktailPage(context, data);
         },
-        child: Text('Show me a Cocktail'),
+        child: const Text('Show me a Cocktail'),
       ),
     ),
   );
 }
 
   Future<void> navigateToCocktailPage(BuildContext context, CocktailData data) async {
+    await Future.delayed(const Duration(milliseconds: 140));
+    // ignore: use_build_context_synchronously
     await Navigator.push(
       context,
       PageRouteBuilder(
-        transitionDuration: Duration(milliseconds: 900), 
+        transitionDuration: const Duration(milliseconds: 900), 
         pageBuilder: (context, animation, secondaryAnimation) {
           const begin = Offset(3.0, 0.05);
           const end = Offset.zero;
@@ -346,13 +357,13 @@ class CocktailData {
 class ShowCocktailInformation extends StatelessWidget {
   final CocktailData data; 
 
-  const ShowCocktailInformation({required this.data});
+  const ShowCocktailInformation({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        margin: EdgeInsets.all(16.0),
+        margin: const EdgeInsets.all(16.0),
         child: ElevatedButton(
           onPressed: () {
             Navigator.push(
@@ -375,7 +386,7 @@ class ShowCocktailInformation extends StatelessWidget {
               )
             );
           },
-          child: Text('Show me how to make'),
+          child: const Text('Show me how to make'),
         ),
       ),
     );
