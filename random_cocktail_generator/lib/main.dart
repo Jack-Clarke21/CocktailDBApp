@@ -89,7 +89,7 @@ class CocktailPage extends StatelessWidget {
             Center(
               child: Column(
                 children: [
-                  ShowCocktailInformation(data: data),
+                  NavigateToCocktailInfoButton(data: data),
                   SlideTransition(
                     position: Tween<Offset>(
                       begin: const Offset(-0.8, 0), // Slide from the left
@@ -356,10 +356,10 @@ class CocktailData {
   }
 }
 
-class ShowCocktailInformation extends StatelessWidget {
+class NavigateToCocktailInfoButton extends StatelessWidget {
   final CocktailData data; 
 
-  const ShowCocktailInformation({super.key, required this.data});
+  const NavigateToCocktailInfoButton({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {
