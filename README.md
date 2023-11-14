@@ -1,3 +1,76 @@
+# Random Cocktail Generator
+
+This Flutter application generates random cocktail recipes using the [CocktailDB API](https://www.thecocktaildb.com/api.php).
+
+## Overview
+
+The app allows users to:
+
+- Generate random cocktail recipes
+- View details about the cocktail, including ingredients, glassware, and instructions on how to make it
+
+## Installation
+
+### Requirements
+
+- Flutter SDK
+- Android Studio / Xcode
+- Internet connectivity to fetch cocktail data
+
+### Getting Started
+
+1. Clone the repository or download the project files.
+2. Open the project in your preferred IDE (Android Studio / VS Code).
+3. Run `flutter pub get` to install dependencies.
+4. Connect your device/emulator and run the app using `flutter run`.
+
+## Usage
+
+- Upon launching the app, the main screen displays a button to generate a random cocktail recipe.
+- Tapping on "Show me a Cocktail" fetches a random cocktail's details.
+- Users can navigate to detailed information about the cocktail by pressing the "Show me how to make" button.
+- The application utilizes the CocktailDB API to fetch cocktail data.
+- Please note that the CocktailDB API may have restrictions on commercial use or redistribution of fetched data. Ensure compliance with the API's terms of use.
+
+
+## Project Structure
+
+### Code Structure
+
+The main components of the application include:
+
+- **`main.dart`**: Entry point of the application.
+- **`MyApp`**: Contains the main UI structure and navigation.
+- **`CocktailPage`**: Displays basic cocktail details.
+- **`CocktailPageWithInfo`**: Provides detailed cocktail information.
+- **`AnimatedTextSwitcher`**: Handles animation for text changes.
+- **`GenerateCocktailButton`**: Button widget to generate random cocktails.
+- **`NavigateToCocktailInfoButton`**: Button widget to navigate to detailed cocktail info.
+- **`CocktailData`**: Model class to represent cocktail information.
+- **`fetchCocktailData`**: Function to fetch random cocktail data from the CocktailDB API.
+
+### Dependencies
+
+- `http`: Used for making HTTP requests to fetch cocktail data.
+- `flutter/material.dart`: Flutter's UI toolkit.
+- `dart:async`: Provides asynchronous programming features.
+
+## Credits
+
+- This app utilizes the [CocktailDB API](https://www.thecocktaildb.com/api.php) for fetching cocktail information.
+
+## Contributing
+
+Contributions are welcome! Feel free to open issues or submit pull requests.
+
+---
+
+
+## Old information regarding creation for Job Application
+
+
+
+
 CocktailDBApp
 A simple application to learn flutter with
 
