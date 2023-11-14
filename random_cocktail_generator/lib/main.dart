@@ -100,7 +100,20 @@ class CocktailPage extends StatelessWidget {
                   width: 340,
                   height: 340,
                   margin: const EdgeInsets.only(top: 5.0),
-                  child: Image.network(data.strDrinkThumb),
+                  decoration: const BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Color.fromARGB(108, 156, 113, 217),
+                        spreadRadius: 10,
+                        blurRadius: 80,
+                        offset: Offset(0, 15)
+                      ),
+                    ],
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: Image.network(data.strDrinkThumb),
+                  ) 
                 ),
               ),
             ),
@@ -170,7 +183,20 @@ class CocktailPageWithInfo extends StatelessWidget {
                     width: 220,
                     height: 220,
                     margin: const EdgeInsets.only(right: 10.0),
+                    decoration: const BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Color.fromARGB(108, 156, 113, 217),
+                        spreadRadius: 6,
+                        blurRadius: 60,
+                        offset: Offset(-12, 6)
+                      ),
+                    ],
+                  ),
+                    child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
                     child: Image.network(data.strDrinkThumb),
+                    )
                   ),
                 ),
 
