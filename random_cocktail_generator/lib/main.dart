@@ -19,6 +19,21 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            foregroundColor: Color.fromARGB(255, 218, 168, 191),
+            backgroundColor: Color.fromARGB(255, 60, 72, 236),
+            disabledForegroundColor: Color.fromARGB(255, 137, 120, 213),
+            padding: const EdgeInsets.all(20.0),
+            shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.0),
+            ),
+            elevation: 102.0,
+            shadowColor: Color.fromARGB(137, 156, 113, 217)
+          )
+        )
+      ),
       home: Scaffold(
         backgroundColor: Colors.black,
         appBar: AppBar(
