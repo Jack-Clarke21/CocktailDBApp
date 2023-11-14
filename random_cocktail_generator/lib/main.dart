@@ -9,6 +9,9 @@ void main() {
   runApp(const MyApp());
 }
 
+
+//    PAGES WIDGETS
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   
@@ -204,7 +207,7 @@ class CocktailPageWithInfo extends StatelessWidget {
   }
 }
 
-
+//        ANIMATION AND BUTTON WIDGETS
 
 
 class AnimatedTextSwitcher extends StatefulWidget {
@@ -302,7 +305,48 @@ Widget build(BuildContext context) {
   }
 }
 
-//Class for storing API request from cocktailDB
+class NavigateToCocktailInfoButton extends StatelessWidget {
+  final CocktailData data; 
+
+  const NavigateToCocktailInfoButton({super.key, required this.data});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        margin: const EdgeInsets.all(16.0),
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              PageRouteBuilder(
+              transitionDuration: const Duration(milliseconds: 900),
+              pageBuilder: (context, animation, secondaryAnimation) {
+                const begin = Offset(0.0, 0.0);
+                const end = Offset.zero;
+                var fastEaseInToSlowEaseOutCurve = Curves.fastEaseInToSlowEaseOut; 
+
+                var tween = Tween(begin: begin, end: end)
+                    .chain(CurveTween(curve: fastEaseInToSlowEaseOutCurve));
+
+                return SlideTransition(
+                  position: animation.drive(tween),
+                  child: CocktailPageWithInfo(data: data),
+                );
+              },
+              )
+            );
+          },
+          child: const Text('Show me how to make'),
+        ),
+      ),
+    );
+  }
+}
+
+//            Class for storing API request from cocktailDB
+
+
 class CocktailData {
   final String strDrink;
   final String strGlass;
@@ -355,43 +399,3 @@ class CocktailData {
     throw Exception('Failed to load cocktail data');
   }
 }
-
-class NavigateToCocktailInfoButton extends StatelessWidget {
-  final CocktailData data; 
-
-  const NavigateToCocktailInfoButton({super.key, required this.data});
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        margin: const EdgeInsets.all(16.0),
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              PageRouteBuilder(
-              transitionDuration: const Duration(milliseconds: 900),
-              pageBuilder: (context, animation, secondaryAnimation) {
-                const begin = Offset(0.0, 0.0);
-                const end = Offset.zero;
-                var fastEaseInToSlowEaseOutCurve = Curves.fastEaseInToSlowEaseOut; 
-
-                var tween = Tween(begin: begin, end: end)
-                    .chain(CurveTween(curve: fastEaseInToSlowEaseOutCurve));
-
-                return SlideTransition(
-                  position: animation.drive(tween),
-                  child: CocktailPageWithInfo(data: data),
-                );
-              },
-              )
-            );
-          },
-          child: const Text('Show me how to make'),
-        ),
-      ),
-    );
-  }
-}
-
