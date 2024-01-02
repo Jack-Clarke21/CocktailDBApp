@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-String randomCocktailUrl = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
+String randomCocktailUrl = 'http://127.0.0.1:8000/drinks/random';
 
 void main() {
   runApp(const MyApp());
@@ -331,7 +331,7 @@ Widget build(BuildContext context) {
         pageBuilder: (context, animation, secondaryAnimation) {
           const begin = Offset(3.0, 0.05);
           const end = Offset.zero;
-          var fastEaseInToSlowEaseOutCurve = Curves.fastEaseInToSlowEaseOut; // You can adjust the curve
+          var fastEaseInToSlowEaseOutCurve = Curves.fastEaseInToSlowEaseOut;
 
           var tween = Tween(begin: begin, end: end)
             .chain(CurveTween(curve: fastEaseInToSlowEaseOutCurve));
@@ -435,6 +435,7 @@ class CocktailData {
   final response = await http.get(Uri.parse(randomCocktailUrl));
   if (response.statusCode == 200) {
     final data = json.decode(response.body)['drinks'][0];
+    print('API Response: $data');
     return CocktailData.fromJson(data);
   } else {
     throw Exception('Failed to load cocktail data');
