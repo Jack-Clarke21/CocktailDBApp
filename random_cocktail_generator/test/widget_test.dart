@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:random_cocktail_generator/main.dart';
+import 'package:random_cocktail_generator/CocktailData.dart';
 
 void main() {
   group('CocktailData Tests', () {
