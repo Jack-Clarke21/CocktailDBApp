@@ -3,5 +3,5 @@ import 'package:random_cocktail_generator/Pages/LandingPage.dart';
 
 
 void main() {
-  runApp(const MyApp());
+  runApp(const LandingPage());
 }

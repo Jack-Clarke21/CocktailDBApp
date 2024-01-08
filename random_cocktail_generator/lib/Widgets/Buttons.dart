@@ -6,8 +6,8 @@ import 'package:random_cocktail_generator/Pages/InfoPage.dart';
 import 'package:random_cocktail_generator/Pages/MainPage.dart';
 
 
-class GenerateCocktailButton extends StatelessWidget {
-  const GenerateCocktailButton({super.key});
+class NavigateToMainPageButton extends StatelessWidget {
+  const NavigateToMainPageButton ({super.key});
 
 @override
 Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ Widget build(BuildContext context) {
       child: ElevatedButton(
         onPressed: () async {
           CocktailData data = await fetchCocktailData();
-          await navigateToCocktailPage(context, data);
+          await navigateToMainPage(context, data);
         },
         child: const Text('Show me a Cocktail'),
       ),
@@ -25,7 +25,7 @@ Widget build(BuildContext context) {
   );
 }
 
-  Future<void> navigateToCocktailPage(BuildContext context, CocktailData data) async {
+  Future<void> navigateToMainPage(BuildContext context, CocktailData data) async {
     await Future.delayed(const Duration(milliseconds: 140));
     // ignore: use_build_context_synchronously
     await Navigator.push(
@@ -42,7 +42,7 @@ Widget build(BuildContext context) {
 
           return SlideTransition(
             position: animation.drive(tween),
-            child: CocktailPage(data: data),
+            child: MainPage(data: data),
           );
         },
       ),
@@ -79,7 +79,7 @@ class NavigateToCocktailInfoButton extends StatelessWidget {
 
                 return SlideTransition(
                   position: animation.drive(tween),
-                  child: CocktailPageWithInfo(data: data),
+                  child: CocktailInfoPage(data: data),
                 );
               },
               )

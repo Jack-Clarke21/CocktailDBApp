@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:random_cocktail_generator/CocktailData.dart';
 import 'package:random_cocktail_generator/Widgets/Buttons.dart';
 
-class CocktailPage extends StatelessWidget {
+class MainPage extends StatelessWidget {
   final CocktailData data;
 
-  const CocktailPage({super.key, required this.data});
+  const MainPage ({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {
@@ -70,8 +70,8 @@ class CocktailPage extends StatelessWidget {
                       parent: ModalRoute.of(context)!.animation!,
                     )),
                     child: const Hero(
-                      tag:"GenerateCocktailButton", 
-                      child: GenerateCocktailButton()
+                      tag:"NavigateToMainPageButton", 
+                      child: NavigateToMainPageButton()
                       ),
                   ),
                 ],

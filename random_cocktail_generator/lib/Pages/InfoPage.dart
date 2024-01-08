@@ -3,10 +3,10 @@ import 'package:random_cocktail_generator/CocktailData.dart';
 import 'package:random_cocktail_generator/Widgets/Buttons.dart';
 
 
-class CocktailPageWithInfo extends StatelessWidget {
+class CocktailInfoPage extends StatelessWidget {
   final CocktailData data;
 
-  const CocktailPageWithInfo({super.key, required this.data});
+  const CocktailInfoPage({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {
@@ -96,8 +96,8 @@ class CocktailPageWithInfo extends StatelessWidget {
             Container(
               margin: const EdgeInsets.all(20.0),
               child: const Hero(
-                tag: 'GenerateCocktailButton',
-                child: GenerateCocktailButton()
+                tag: 'NavigateToMainPageButton',
+                child: NavigateToMainPageButton()
                 ),
             ),
           ],
