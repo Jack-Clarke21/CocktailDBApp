@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:random_cocktail_generator/CocktailData.dart';
+import 'package:random_cocktail_generator/Widgets/AppColors.dart';
 import 'package:random_cocktail_generator/Widgets/Buttons.dart';
 
 class MainPage extends StatelessWidget {
@@ -10,7 +11,7 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: AppColors.getColor(AppColor.backgroundColor),
       appBar: AppBar(
         title: const Text('Cocktail Details'),
       ),
@@ -19,12 +20,18 @@ class MainPage extends StatelessWidget {
           children: [
             Text(
               data.strDrink,
-              style: const TextStyle(color: Colors.white, fontSize: 50),
+              style: TextStyle(
+                color: AppColors.getColor(AppColor.textColor),
+                fontSize: 50
+                ),
               textAlign: TextAlign.center,
             ),
             Text(
               'Made in a ${data.strGlass}',
-              style: const TextStyle(color: Colors.white, fontSize: 20,),
+              style: TextStyle(
+                color: AppColors.getColor(AppColor.textColor),
+                 fontSize: 20,
+                 ),
             ),
             SlideTransition(
               position: Tween<Offset>(
