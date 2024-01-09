@@ -93,9 +93,10 @@ class CocktailInfoPage extends StatelessWidget {
                           ),
                         ),
                         // Display ingredients and measures
-                        for (int i = 0; i < data.ingredients.length; i++)
                           Text(
-                            '${data.ingredients[i]}: ${data.measures[i]}',
+                            data.ingredientsAndMeasures
+                            .map((map) => map['ingredient'])
+                            .join('\n'), // Join ingredients with a new line 
                             style: TextStyle(
                               color: AppColors.getColor(AppColor.textColor), 
                               fontSize: 18
@@ -120,24 +121,4 @@ class CocktailInfoPage extends StatelessWidget {
       ),
     );
   }
-}
-
-
-
-// Atemptin to add in logic to remove colon if no measure is found
-Widget buildIngredientText(String ingredient, String? measure) {
-  final text = (measure != null && measure.isNotEmpty)
-      ? '$ingredient: $measure'
-      : ingredient;
-
-  return Container(
-    margin: const EdgeInsets.only(bottom: 10.0),
-    child: Text(
-      text,
-      style: TextStyle(
-        color: AppColors.getColor(AppColor.textColor),
-        fontSize: 18,
-      ),
-    ),
-  );
 }
