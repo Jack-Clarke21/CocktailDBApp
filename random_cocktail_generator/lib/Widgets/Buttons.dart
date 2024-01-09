@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:random_cocktail_generator/CocktailData.dart';
-import 'package:random_cocktail_generator/CocktailRepository.dart';
 import 'package:random_cocktail_generator/Pages/InfoPage.dart';
 import 'package:random_cocktail_generator/Pages/MainPage.dart';
 import 'package:fluro/fluro.dart';

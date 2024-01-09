@@ -14,7 +14,7 @@ class _AnimatedTextSwitcherState extends State<AnimatedTextSwitcher> {
   final TextStyle textStyle = const TextStyle(
     fontFamily: 'Inter', 
     fontWeight: FontWeight.w900, 
-    fontSize: 210,
+    fontSize: 190,
     letterSpacing: 8.0,
     color: Colors.white, 
   );

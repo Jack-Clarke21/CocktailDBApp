@@ -25,46 +25,45 @@ class _MainPageState extends State<MainPage> {
     });
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.getColor(AppColor.backgroundColor),
-      appBar: AppBar(
-        title: const Text('Main Page'),
-      ),
-      body: data == null
-          ?  Center(
-              child: CircularProgressIndicator(
-                color: AppColors.getColor(AppColor.secondaryColor),
-              ),
-            )
-          : Center(
-              child: Column(
-                children: [
-                  Text(
-                    data!.strDrink,
-                    style: TextStyle(
-                      color: AppColors.getColor(AppColor.textColor),
-                      fontSize: 50,
-                    ),
-                    textAlign: TextAlign.center,
+@override
+Widget build(BuildContext context) {
+  return Scaffold(
+    backgroundColor: AppColors.getColor(AppColor.backgroundColor),
+    appBar: AppBar(
+      title: const Text('Main Page'),
+    ),
+    body: data == null
+        ? Center(
+            child: CircularProgressIndicator(
+              color: AppColors.getColor(AppColor.secondaryColor),
+            ),
+          )
+        : Center(
+            child: Column(
+              children: [
+                Text(
+                  data!.strDrink,
+                  style: TextStyle(
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.w500,
+                    color: AppColors.getColor(AppColor.textColor),
+                    fontSize: 100,
                   ),
-                  Text(
-                    'Made in a ${data!.strGlass}',
-                    style: TextStyle(
-                      color: AppColors.getColor(AppColor.textColor),
-                      fontSize: 20,
-                    ),
+                  textAlign: TextAlign.center,
+                ),
+                Text(
+                  'Made in a ${data!.strGlass}',
+                  style: TextStyle(
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.w200,
+                    color: AppColors.getColor(AppColor.textColor),
+                    fontSize: 20,
                   ),
-                  SlideTransition(
-                    position: Tween<Offset>(
-                      begin: const Offset(-3.0, 0.0), // Slide from the left
-                      end: Offset.zero,
-                    ).animate(CurvedAnimation(
-                      curve: Curves.easeOut,
-                      parent: ModalRoute.of(context)!.animation!,
-                    )),
-                    child: Hero(
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Hero(
                       tag: 'cocktailImage_${data!.strDrink}',
                       child: Container(
                         width: 340,
@@ -86,9 +85,7 @@ class _MainPageState extends State<MainPage> {
                         ),
                       ),
                     ),
-                  ),
-                  Center(
-                    child: Column(
+                    Column(
                       children: [
                         NavigateToCocktailInfoButton(data: data!),
                         SlideTransition(
@@ -106,10 +103,11 @@ class _MainPageState extends State<MainPage> {
                         ),
                       ],
                     ),
-                  )
-                ],
-              ),
+                  ],
+                ),
+              ],
             ),
-    );
-  }
+          ),
+  );
+}
 }
