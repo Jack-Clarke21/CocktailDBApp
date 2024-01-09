@@ -10,11 +10,12 @@ class AnimatedTextSwitcher extends StatefulWidget {
 
 class _AnimatedTextSwitcherState extends State<AnimatedTextSwitcher> {
   int _currentIndex = 0;
-  final List<String> words = ["Generate", "Cocktails", "Now"];
+  final List<String> words = ["GENERATE", "COCKTAILS", "NOW"];
   final TextStyle textStyle = const TextStyle(
-    fontFamily: 'Impact', 
-    fontWeight: FontWeight.bold, 
-    fontSize: 156, 
+    fontFamily: 'Inter', 
+    fontWeight: FontWeight.w900, 
+    fontSize: 210,
+    letterSpacing: 8.0,
     color: Colors.white, 
   );
 
@@ -33,8 +34,8 @@ class _AnimatedTextSwitcherState extends State<AnimatedTextSwitcher> {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.black, 
-      width: double.infinity,
-      height: 200, 
+      width: 1280, 
+      height: 242,
       child: Center(
         child: AnimatedSwitcher(
           duration: const Duration(seconds: 0),
