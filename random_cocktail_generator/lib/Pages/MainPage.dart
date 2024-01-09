@@ -1,25 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:random_cocktail_generator/CocktailData.dart';
+import 'package:random_cocktail_generator/CocktailRepository.dart';
 import 'package:random_cocktail_generator/Widgets/AppColors.dart';
 import 'package:random_cocktail_generator/Widgets/Buttons.dart';
 
-class MainPage extends StatelessWidget {
-  final CocktailData data;
+class MainPage extends StatefulWidget {
+  MainPage ({super.key})  {
 
-  const MainPage ({super.key, required this.data});
+  }
 
   @override
-  Widget build(BuildContext context) {
+  State<MainPage> createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
+  CocktailData? data;
+  @override
+  void initState() {
+    super.initState();
+
+ fetchCocktailData().then((response){
+    setState((){data=response;});
+    });
+  }
+  @override
+  Widget build(BuildContext context){
     return Scaffold(
       backgroundColor: AppColors.getColor(AppColor.backgroundColor),
       appBar: AppBar(
         title: const Text('Cocktail Details'),
       ),
-      body: Center(
+      body: data == null ? CircularProgressIndicator() : Center(
         child: Column(
           children: [
             Text(
-              data.strDrink,
+              data!.strDrink,
               style: TextStyle(
                 color: AppColors.getColor(AppColor.textColor),
                 fontSize: 50
@@ -27,7 +42,7 @@ class MainPage extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             Text(
-              'Made in a ${data.strGlass}',
+              'Made in a ${data!.strGlass}',
               style: TextStyle(
                 color: AppColors.getColor(AppColor.textColor),
                  fontSize: 20,
@@ -42,7 +57,7 @@ class MainPage extends StatelessWidget {
                 parent: ModalRoute.of(context)!.animation!,
               )),
               child: Hero(
-                tag: 'cocktailImage_${data.strDrink}',
+                tag: 'cocktailImage_${data!.strDrink}',
                 child: Container(
                   width: 340,
                   height: 340,
@@ -59,7 +74,7 @@ class MainPage extends StatelessWidget {
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(8),
-                    child: Image.network(data.strDrinkThumb),
+                    child: Image.network(data!.strDrinkThumb),
                   ) 
                 ),
               ),
@@ -67,7 +82,7 @@ class MainPage extends StatelessWidget {
             Center(
               child: Column(
                 children: [
-                  NavigateToCocktailInfoButton(data: data),
+                  NavigateToCocktailInfoButton(data: data!),
                   SlideTransition(
                     position: Tween<Offset>(
                       begin: const Offset(-0.8, 0), // Slide from the left

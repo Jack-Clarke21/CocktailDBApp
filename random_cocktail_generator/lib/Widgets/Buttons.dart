@@ -4,26 +4,35 @@ import 'package:random_cocktail_generator/CocktailData.dart';
 import 'package:random_cocktail_generator/CocktailRepository.dart';
 import 'package:random_cocktail_generator/Pages/InfoPage.dart';
 import 'package:random_cocktail_generator/Pages/MainPage.dart';
+import 'package:fluro/fluro.dart';
+import 'package:random_cocktail_generator/router.dart'; 
+
 
 
 class NavigateToMainPageButton extends StatelessWidget {
-  const NavigateToMainPageButton ({super.key});
+  const NavigateToMainPageButton({Key? key});
 
-@override
-Widget build(BuildContext context) {
-  return Center(
-    child: Container(
-      margin: const EdgeInsets.all(16.0),
-      child: ElevatedButton(
-        onPressed: () async {
-          CocktailData data = await fetchCocktailData();
-          await navigateToMainPage(context, data);
-        },
-        child: const Text('Show me a Cocktail'),
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        margin: const EdgeInsets.all(16.0),
+        child: ElevatedButton(
+          onPressed: () async {
+          
+            AppRouter.router.navigateTo(
+              context,
+              '/main',
+              transition: TransitionType.inFromRight,
+            );
+          },
+          child: const Text('Show me a Cocktail'),
+        ),
       ),
-    ),
-  );
-}
+    );
+  }
+
+
 
   Future<void> navigateToMainPage(BuildContext context, CocktailData data) async {
     await Future.delayed(const Duration(milliseconds: 140));
@@ -42,7 +51,7 @@ Widget build(BuildContext context) {
 
           return SlideTransition(
             position: animation.drive(tween),
-            child: MainPage(data: data),
+            child: MainPage(),
           );
         },
       ),

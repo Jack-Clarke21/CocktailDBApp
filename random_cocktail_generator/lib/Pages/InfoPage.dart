@@ -121,3 +121,23 @@ class CocktailInfoPage extends StatelessWidget {
     );
   }
 }
+
+
+
+// Atemptin to add in logic to remove colon if no measure is found
+Widget buildIngredientText(String ingredient, String? measure) {
+  final text = (measure != null && measure.isNotEmpty)
+      ? '$ingredient: $measure'
+      : ingredient;
+
+  return Container(
+    margin: const EdgeInsets.only(bottom: 10.0),
+    child: Text(
+      text,
+      style: TextStyle(
+        color: AppColors.getColor(AppColor.textColor),
+        fontSize: 18,
+      ),
+    ),
+  );
+}
