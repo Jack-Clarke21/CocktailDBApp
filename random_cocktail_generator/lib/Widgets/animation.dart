@@ -39,14 +39,11 @@ class _AnimatedTextSwitcherState extends State<AnimatedTextSwitcher> {
       child: Center(
         child: AnimatedSwitcher(
           duration: const Duration(seconds: 0),
-          child: FittedBox(
-            fit: BoxFit.contain,
           child: Text(
             words[_currentIndex],
             key: Key(words[_currentIndex]),
             style: textStyle,
-            )
-          ),
+          )
         ),
       ),
     );

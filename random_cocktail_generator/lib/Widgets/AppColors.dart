@@ -15,7 +15,7 @@ class AppColors {
     AppColor.primaryColor: Color.fromARGB(255, 60, 72, 236),
     AppColor.secondaryColor: Color.fromARGB(255, 137, 120, 213),
     AppColor.textColor: Colors.white,
-    AppColor.buttonTextColor: Color.fromARGB(255, 218, 168, 191),
+    AppColor.buttonTextColor: Color.fromARGB(255, 241, 216, 228),
     AppColor.backgroundColor: Colors.black,
     AppColor.shadowColor: Color.fromARGB(108, 156, 113, 217),
     // Assign colors for each enum value
