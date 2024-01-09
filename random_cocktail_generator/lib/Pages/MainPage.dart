@@ -30,7 +30,7 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       backgroundColor: AppColors.getColor(AppColor.backgroundColor),
       appBar: AppBar(
-        title: const Text('Cocktail Details'),
+        title: const Text('Main Page'),
       ),
       body: data == null
           ?  Center(

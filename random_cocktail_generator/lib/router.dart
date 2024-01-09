@@ -10,7 +10,7 @@ class AppRouter {
   static void setupRouter() {
     // Define routes using router.define(...)
     router.define(
-      '/home',
+      '/',
       handler: Handler(
         handlerFunc: (BuildContext? context, Map<String, dynamic> params) {
           return const LandingPage();
@@ -22,7 +22,7 @@ class AppRouter {
       '/main',
       handler: Handler(
         handlerFunc: (BuildContext? context, Map<String, dynamic> params) {
-          return MainPage();
+          return const MainPage();
         },
       ),
     );

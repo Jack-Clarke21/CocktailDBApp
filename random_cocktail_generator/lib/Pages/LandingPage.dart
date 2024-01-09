@@ -29,7 +29,7 @@ class LandingPage extends StatelessWidget {
       home: Scaffold(
         backgroundColor: Colors.black,
         appBar: AppBar(
-          title: const Text('Main Page'),
+          title: const Text('Landing Page'),
         ),
         body: const Center(
           child: Column(

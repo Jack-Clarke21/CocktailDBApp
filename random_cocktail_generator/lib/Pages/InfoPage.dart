@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:random_cocktail_generator/CocktailData.dart';
 import 'package:random_cocktail_generator/Widgets/Buttons.dart';
-
 import '../Widgets/AppColors.dart';
 
 
