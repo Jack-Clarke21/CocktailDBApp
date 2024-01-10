@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:random_cocktail_generator/Widgets/Buttons.dart';
+import 'package:random_cocktail_generator/Widgets/buttons.dart';
 import 'package:random_cocktail_generator/Widgets/animation.dart';
 
 class LandingPage extends StatelessWidget {

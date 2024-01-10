@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:random_cocktail_generator/CocktailData.dart';
 import 'package:random_cocktail_generator/CocktailRepository.dart';
-import 'package:random_cocktail_generator/Widgets/AppColors.dart';
-import 'package:random_cocktail_generator/Widgets/Buttons.dart';
+import 'package:random_cocktail_generator/Widgets/app_colors.dart';
+import 'package:random_cocktail_generator/Widgets/buttons.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);

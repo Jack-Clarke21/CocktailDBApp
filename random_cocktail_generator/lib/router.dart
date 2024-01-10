@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluro/fluro.dart';
-import 'package:random_cocktail_generator/Pages/LandingPage.dart';
-import 'package:random_cocktail_generator/Pages/MainPage.dart';
+import 'package:random_cocktail_generator/Pages/landing_page.dart';
+import 'package:random_cocktail_generator/Pages/main_page.dart';
 
 class AppRouter {
   static FluroRouter router = FluroRouter();

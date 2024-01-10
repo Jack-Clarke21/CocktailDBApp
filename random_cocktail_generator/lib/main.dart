@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:random_cocktail_generator/Widgets/AppColors.dart';
+import 'package:random_cocktail_generator/Widgets/app_colors.dart';
 import 'package:random_cocktail_generator/router.dart';
 
 
