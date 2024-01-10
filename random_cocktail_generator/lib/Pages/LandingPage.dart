@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:random_cocktail_generator/Widgets/Buttons.dart';
 import 'package:random_cocktail_generator/Widgets/animation.dart';
+import 'package:random_cocktail_generator/router.dart';
 import '../Widgets/AppColors.dart';
 
 class LandingPage extends StatelessWidget {
@@ -8,24 +9,8 @@ class LandingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          elevatedButtonTheme: ElevatedButtonThemeData(
-            style: ElevatedButton.styleFrom(
-              foregroundColor:AppColors.getColor(AppColor.buttonTextColor),
-              backgroundColor: AppColors.getColor(AppColor.primaryColor),
-              disabledForegroundColor:AppColors.getColor(AppColor.secondaryColor),
-              shadowColor: AppColors.getColor(AppColor.shadowColor),
-              minimumSize: const Size(180, 40),
-              //elevation: 102.0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-            ),
-          ),
-        ),
-        home:  Scaffold(
+    return 
+      Scaffold(
           backgroundColor: Colors.black,
           //appBar: AppBar(
            // elevation: 0,
@@ -50,6 +35,6 @@ class LandingPage extends StatelessWidget {
               ],
             ),
           ),
-        ));
+        );
   }
 }

@@ -8,6 +8,11 @@ class AppRouter {
   static FluroRouter router = FluroRouter();
 
   static void setupRouter() {
+    router.notFoundHandler = Handler(
+        handlerFunc: (BuildContext? context, Map<String, List<String>> params) {
+      debugPrint("*** ROUTE WAS NOT FOUND ***");
+      return LandingPage();
+    });
     // Define routes using router.define(...)
     router.define(
       '/',
@@ -23,15 +28,6 @@ class AppRouter {
       handler: Handler(
         handlerFunc: (BuildContext? context, Map<String, dynamic> params) {
           return const MainPage();
-        },
-      ),
-    );
-
-    router.define(
-      '/info',
-      handler: Handler(
-        handlerFunc: (BuildContext? context, Map<String, dynamic> params) {
-          return CocktailInfoPage(data: params['data'][0]);
         },
       ),
     );
