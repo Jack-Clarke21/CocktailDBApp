@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fluro/fluro.dart';
-import 'package:random_cocktail_generator/Pages/InfoPage.dart';
 import 'package:random_cocktail_generator/Pages/LandingPage.dart';
 import 'package:random_cocktail_generator/Pages/MainPage.dart';
 
