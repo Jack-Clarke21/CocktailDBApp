@@ -72,38 +72,34 @@ class NavigateToCocktailInfoButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
-        //margin: const EdgeInsets.all(10.0),
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (_)=>
-            CocktailInfoPage(data: data),settings: RouteSettings(name: '/info/${data.strDrink}' )));
-
-            // Navigator.push(
-            //   context,
-            //   PageRouteBuilder(
-                
-            //   transitionDuration: const Duration(milliseconds: 900),
-            //   pageBuilder: (context, animation, secondaryAnimation) {
-            //     const begin = Offset(0.0, 0.0);
-            //     const end = Offset.zero;
-            //     var fastEaseInToSlowEaseOutCurve = Curves.fastEaseInToSlowEaseOut; 
-
-            //     var tween = Tween(begin: begin, end: end)
-            //         .chain(CurveTween(curve: fastEaseInToSlowEaseOutCurve));
-
-            //     return SlideTransition(
-            //       position: animation.drive(tween),
-            //       child: CocktailInfoPage(data: data),
-            //     );
-            //   },
-            //   )
-            // );
-          },
-          child: const Text(
-            'Show me how to make',
-            style: TextStyle(fontSize: 12),
-          ),
+      child: ElevatedButton(
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (_)=>
+            CocktailInfoPage(data: data),settings: RouteSettings(name: '/info/${data.strDrink}')
+          ));
+          //TO PLACE BACK IN ONE FORMATED ${data.strDrink}
+      
+              
+          //   transitionDuration: const Duration(milliseconds: 900),
+          //   pageBuilder: (context, animation, secondaryAnimation) {
+          //     const begin = Offset(0.0, 0.0);
+          //     const end = Offset.zero;
+          //     var fastEaseInToSlowEaseOutCurve = Curves.fastEaseInToSlowEaseOut; 
+      
+          //     var tween = Tween(begin: begin, end: end)
+          //         .chain(CurveTween(curve: fastEaseInToSlowEaseOutCurve));
+      
+          //     return SlideTransition(
+          //       position: animation.drive(tween),
+          //       child: CocktailInfoPage(data: data),
+          //     );
+          //   },
+          //   )
+          // );
+        },
+        child: const Text(
+          'Show me how to make',
+          style: TextStyle(fontSize: 12),
         ),
       ),
     );

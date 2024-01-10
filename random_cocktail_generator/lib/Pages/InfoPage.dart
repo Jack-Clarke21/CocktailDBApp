@@ -3,7 +3,6 @@ import 'package:random_cocktail_generator/CocktailData.dart';
 import 'package:random_cocktail_generator/Widgets/Buttons.dart';
 import '../Widgets/AppColors.dart';
 
-
 class CocktailInfoPage extends StatelessWidget {
   final CocktailData data;
 
@@ -13,110 +12,127 @@ class CocktailInfoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.getColor(AppColor.backgroundColor),
-     // appBar: AppBar(
-     //   title: const Text('Cocktail Details'),
-      //),
-      body: Center(
-        child: Column(
+      body: Container(
+        margin: const EdgeInsets.only(top: 80.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Fade in Text
-            Container(
-              margin: const EdgeInsets.only(bottom: 20.0),
-              child: Text(
-                data.strDrink,
-                style: TextStyle(
-                  color: AppColors.getColor(AppColor.textColor),
-                  fontSize: 50
-                ),
-                textAlign: TextAlign.center,
-              )
-            ),
-
-            // Fade in Text
-            Text(
-              'Made in a ${data.strGlass}',
-              style: TextStyle(
-                color: AppColors.getColor(AppColor.textColor),
-                fontSize: 20
-              ),
-            ),
-
-            const SizedBox(height: 20),
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+            // First Column with Image and Button
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Hero(
                   tag: 'cocktailImage_${data.strDrink}',
                   child: Container(
-                    width: 220,
-                    height: 220,
-                    margin: const EdgeInsets.only(right: 10.0),
+                    width: 420,
+                    height: 420,
                     decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: AppColors.getColor(AppColor.shadowColor), 
-                        spreadRadius: 6,
-                        blurRadius: 60,
-                        offset: const Offset(-12, 6)
-                      ),
-                    ],
-                  ),
-                    child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
-                    child: Image.network(data.strDrinkThumb),
-                    )
-                  ),
-                ),
-
-                // Slide in Container
-                SlideTransition(
-                  position: Tween<Offset>(
-                    begin: const Offset(1.0, 0.0),
-                    end: Offset.zero,
-                  ).animate(CurvedAnimation(
-                    curve: Curves.easeInOut,
-                    parent: ModalRoute.of(context)!.animation!,
-                  )),
-                  child: SizedBox(
-                    width: 200,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.only(bottom: 20.0),
-                          child: Text(
-                            data.strInstructions,
-                            style: TextStyle(
-                              color: AppColors.getColor(AppColor.textColor), 
-                              fontSize: 14, 
-                              fontStyle: FontStyle.italic
-                              ),
-                          ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: AppColors.getColor(AppColor.shadowColor),
+                          spreadRadius: 6,
+                          blurRadius: 60,
+                          offset: const Offset(-12, 6),
                         ),
-                        // Display ingredients and measures
-                          Text(
-                            data.ingredientsAndMeasures
-                            .map((map) => map['ingredient'])
-                            .join('\n'), // Join ingredients with a new line 
-                            style: TextStyle(
-                              color: AppColors.getColor(AppColor.textColor), 
-                              fontSize: 18
-                              ),
-                          ),
                       ],
                     ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: Image.network(data.strDrinkThumb),
+                    ),
                   ),
+                ),
+                const SizedBox(height: 40.0),
+                const Hero(
+                  tag: 'NavigateToMainPageButton',
+                  child: NavigateToMainPageButton(),
                 ),
               ],
             ),
 
+            // Second Column with Title, Glass Type, Instructions, and Ingredients
             Container(
-              margin: const EdgeInsets.all(20.0),
-              child: const Hero(
-                tag: 'NavigateToMainPageButton',
-                child: NavigateToMainPageButton()
-                ),
+              margin: const EdgeInsets.only(left: 40.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Title
+                  Container(
+                    child: Text(
+                      data.strDrink,
+                      style: TextStyle(
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w500,
+                        color: AppColors.getColor(AppColor.textColor),
+                        fontSize: 70,
+                        height: 0.8,
+                        textBaseline: TextBaseline.ideographic,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  // Glass Type
+                  Container(
+                    margin: const EdgeInsets.only(top: 10),
+                    child: Text(
+                      'Made in a ${data.strGlass}',
+                      style: TextStyle(
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w200,
+                        color: AppColors.getColor(AppColor.textColor),
+                        fontSize: 16,
+                        height: 1.0,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 40),
+              
+                  // Instructions (Swapped with Ingredients)
+                  SlideTransition(
+                    position: Tween<Offset>(
+                      begin: const Offset(1.0, 0.0),
+                      end: Offset.zero,
+                    ).animate(CurvedAnimation(
+                      curve: Curves.easeInOut,
+                      parent: ModalRoute.of(context)!.animation!,
+                    )),
+                    child: SizedBox(
+                      width: 400,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            data.ingredientsAndMeasures
+                                .map((map) => map['ingredient'])
+                                .join('\n'), // Join ingredients with a new line
+                            style: TextStyle(
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w800,
+                              color: AppColors.getColor(AppColor.textColor),
+                              fontSize: 20,
+                            ),
+                          ),
+                          const SizedBox(height: 40),
+                          // Ingredients (Swapped with Instructions)
+                          SingleChildScrollView(
+                            child: Text(
+                              data.strInstructions,
+                              style: TextStyle(
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w200,
+                                color: AppColors.getColor(AppColor.textColor),
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
