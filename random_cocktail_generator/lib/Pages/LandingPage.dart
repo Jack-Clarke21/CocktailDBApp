@@ -25,23 +25,27 @@ class LandingPage extends StatelessWidget {
             ),
           ),
         ),
-        home: Scaffold(
+        home:  Scaffold(
           backgroundColor: Colors.black,
-          appBar: AppBar(
-            title: const Text('Landing Page'),
-          ),
-          body: const Center(
+          //appBar: AppBar(
+           // elevation: 0,
+           // title: const Text('Landing Page'),
+          //),
+          body: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.only(bottom: 40.0),
+              children:[
+                const Padding(
+                  padding: EdgeInsets.only(bottom: 00.0),
                   child: AnimatedTextSwitcher(),
                 ),
-                Hero(
-                  tag: 'NavigateToMainPageButton',
-                  child: NavigateToMainPageButton(),
+                Container(
+                  margin: const EdgeInsets.all(0.0),
+                  child: const Hero(
+                    tag: 'NavigateToMainPageButton',
+                    child: NavigateToMainPageButton(),
+                  ),
                 ),
               ],
             ),

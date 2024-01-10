@@ -13,20 +13,23 @@ class CocktailInfoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.getColor(AppColor.backgroundColor),
-      appBar: AppBar(
-        title: const Text('Cocktail Details'),
-      ),
+     // appBar: AppBar(
+     //   title: const Text('Cocktail Details'),
+      //),
       body: Center(
         child: Column(
           children: [
             // Fade in Text
-            Text(
-              data.strDrink,
-              style: TextStyle(
-                color: AppColors.getColor(AppColor.textColor),
-                fontSize: 50
-              ),
-              textAlign: TextAlign.center,
+            Container(
+              margin: const EdgeInsets.only(bottom: 20.0),
+              child: Text(
+                data.strDrink,
+                style: TextStyle(
+                  color: AppColors.getColor(AppColor.textColor),
+                  fontSize: 50
+                ),
+                textAlign: TextAlign.center,
+              )
             ),
 
             // Fade in Text

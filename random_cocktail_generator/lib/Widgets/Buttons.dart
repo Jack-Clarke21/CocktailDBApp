@@ -15,7 +15,7 @@ class NavigateToMainPageButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        margin: const EdgeInsets.all(16.0),
+        margin: const EdgeInsets.all(10.0),
         child: ElevatedButton(
           onPressed: () async {
           
@@ -25,7 +25,10 @@ class NavigateToMainPageButton extends StatelessWidget {
               transition: TransitionType.inFromRight,
             );
           },
-          child: const Text('Show me a Cocktail'),
+          child: const Text(
+            'Show me a Cocktail',
+            style: TextStyle(fontSize: 12),
+            ),
         ),
       ),
     );
@@ -70,7 +73,7 @@ class NavigateToCocktailInfoButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        margin: const EdgeInsets.all(16.0),
+        margin: const EdgeInsets.all(10.0),
         child: ElevatedButton(
           onPressed: () {
             Navigator.push(
@@ -93,7 +96,10 @@ class NavigateToCocktailInfoButton extends StatelessWidget {
               )
             );
           },
-          child: const Text('Show me how to make'),
+          child: const Text(
+            'Show me how to make',
+            style: TextStyle(fontSize: 12),
+          ),
         ),
       ),
     );
