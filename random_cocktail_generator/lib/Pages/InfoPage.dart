@@ -70,6 +70,7 @@ class CocktailInfoPage extends StatelessWidget {
                         height: 0.8,
                         textBaseline: TextBaseline.ideographic,
                       ),
+                      softWrap: true,
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -89,7 +90,7 @@ class CocktailInfoPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 40),
               
-                  // Instructions (Swapped with Ingredients)
+                  // Instructions
                   SlideTransition(
                     position: Tween<Offset>(
                       begin: const Offset(1.0, 0.0),
@@ -115,16 +116,14 @@ class CocktailInfoPage extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(height: 40),
-                          // Ingredients (Swapped with Instructions)
-                          SingleChildScrollView(
-                            child: Text(
-                              data.strInstructions,
-                              style: TextStyle(
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.w200,
-                                color: AppColors.getColor(AppColor.textColor),
-                                fontSize: 18,
-                              ),
+                          // Ingredients
+                          Text(
+                            data.strInstructions,
+                            style: TextStyle(
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w200,
+                              color: AppColors.getColor(AppColor.textColor),
+                              fontSize: 18,
                             ),
                           ),
                         ],

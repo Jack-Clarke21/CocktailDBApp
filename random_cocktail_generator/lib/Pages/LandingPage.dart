@@ -20,9 +20,10 @@ class LandingPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children:[
                 const Padding(
-                  padding: EdgeInsets.only(bottom: 00.0),
+                  padding: EdgeInsets.only(bottom: 0.0),
                   child: AnimatedTextSwitcher(),
                 ),
+                const SizedBox(height: 15.0,),
                 Container(
                   margin: const EdgeInsets.all(0.0),
                   child: const Hero(

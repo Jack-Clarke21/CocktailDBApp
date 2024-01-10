@@ -10,7 +10,7 @@ class AppRouter {
     router.notFoundHandler = Handler(
         handlerFunc: (BuildContext? context, Map<String, List<String>> params) {
       debugPrint("*** ROUTE WAS NOT FOUND ***");
-      return LandingPage();
+      return const LandingPage();
     });
     // Define routes using router.define(...)
     router.define(
