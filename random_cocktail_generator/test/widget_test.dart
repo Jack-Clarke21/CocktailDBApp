@@ -22,7 +22,5 @@ void main() {
       expect(cocktailData.strInstructions, equals('Pour and enjoy!'));
       expect(cocktailData.ingredientsAndMeasures[0].values, equals(['Tequila: 25 ml']));
     });
-
-    ;
   });
 }

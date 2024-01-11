@@ -5,9 +5,11 @@ import 'package:random_cocktail_generator/router.dart';
 
 void main() {
   AppRouter.setupRouter();
-  runApp(MyAPP());
+  runApp(const MyApp());
 }
-class MyAPP extends StatelessWidget {
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
  @override
   Widget build(BuildContext context) {
     return MaterialApp(

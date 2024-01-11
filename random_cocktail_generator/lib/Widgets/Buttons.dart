@@ -14,22 +14,18 @@ class NavigateToMainPageButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
-        //margin: const EdgeInsets.all(10.0),
-        child: ElevatedButton(
-          onPressed: () async {
-          
-            AppRouter.router.navigateTo(
-              context,
-              '/main',
-              transition: TransitionType.inFromRight,
-            );
-          },
-          child: const Text(
-            'Show me a Cocktail',
-            style: TextStyle(fontSize: 12),
-            ),
-        ),
+      child: ElevatedButton(
+        onPressed: () async {
+          AppRouter.router.navigateTo(
+            context,
+            '/main',
+            transition: TransitionType.inFromRight,
+          );
+        },
+        child: const Text(
+          'Show me a Cocktail',
+          style: TextStyle(fontSize: 12),
+          ),
       ),
     );
   }
@@ -53,7 +49,7 @@ class NavigateToMainPageButton extends StatelessWidget {
 
           return SlideTransition(
             position: animation.drive(tween),
-            child: MainPage(),
+            child: const MainPage(),
           );
         },
       ),
@@ -77,9 +73,6 @@ class NavigateToCocktailInfoButton extends StatelessWidget {
           Navigator.push(context, MaterialPageRoute(builder: (_)=>
             CocktailInfoPage(data: data),settings: RouteSettings(name: '/info/${data.strDrink}')
           ));
-          //TO PLACE BACK IN ONE FORMATED ${data.strDrink}
-      
-              
           //   transitionDuration: const Duration(milliseconds: 900),
           //   pageBuilder: (context, animation, secondaryAnimation) {
           //     const begin = Offset(0.0, 0.0);
