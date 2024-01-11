@@ -1,6 +1,6 @@
-import 'package:random_cocktail_generator/CocktailData.dart';
 import 'dart:async';
 import 'package:dio/dio.dart';
+import 'package:random_cocktail_generator/cocktail_data.dart';
 
 
 const String randomCocktailUrl = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';

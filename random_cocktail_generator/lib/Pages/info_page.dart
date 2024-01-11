@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:random_cocktail_generator/CocktailData.dart';
 import 'package:random_cocktail_generator/Widgets/buttons.dart';
+import 'package:random_cocktail_generator/cocktail_data.dart';
 import '../Widgets/app_colors.dart';
 
 class CocktailInfoPage extends StatelessWidget {

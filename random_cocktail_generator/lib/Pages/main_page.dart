@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:random_cocktail_generator/CocktailData.dart';
-import 'package:random_cocktail_generator/CocktailRepository.dart';
+import 'package:random_cocktail_generator/cocktail_data.dart';
+import 'package:random_cocktail_generator/cocktail_repository.dart';
 import 'package:random_cocktail_generator/Widgets/app_colors.dart';
 import 'package:random_cocktail_generator/Widgets/buttons.dart';
 
