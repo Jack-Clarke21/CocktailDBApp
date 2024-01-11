@@ -118,7 +118,7 @@ Widget build(BuildContext context) {
                                 parent: ModalRoute.of(context)!.animation!,
                               )),
                               child: const Hero(
-                                tag: "NavigateToMainPageButton",
+                                tag: 'NavigateToMainPageButton', 
                                 child: NavigateToMainPageButton(),
                               ),
                             ),
